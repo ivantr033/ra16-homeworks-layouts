@@ -1,0 +1,32 @@
+.store-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.toolbar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.icon-switch-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #555;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+}
+
+.icon-switch-btn:hover {
+    color: #000;
+}
+
+.icon-switch-btn .material-icons {
+    font-size: 32px;
+}
