@@ -1,0 +1,487 @@
+================================================================================
+ARCHIVO: App.css
+RUTA COMPLETA: C:/Users/ivant/Desktop/ra16-homeworks-layouts/src\App.css
+================================================================================
+(Vacío)
+
+
+================================================================================
+ARCHIVO: App.jsx
+RUTA COMPLETA: C:/Users/ivant/Desktop/ra16-homeworks-layouts/src\App.jsx
+================================================================================
+import Store from "./components/Store/Store";
+
+function App() {
+  return (
+    <div>
+      <Store />
+    </div>
+  )
+}
+
+export default App
+
+
+
+================================================================================
+ARCHIVO: index.css
+RUTA COMPLETA: C:/Users/ivant/Desktop/ra16-homeworks-layouts/src\index.css
+================================================================================
+(Vacío)
+
+
+================================================================================
+ARCHIVO: main.jsx
+RUTA COMPLETA: C:/Users/ivant/Desktop/ra16-homeworks-layouts/src\main.jsx
+================================================================================
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
+import App from './App.jsx'
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+)
+
+
+
+================================================================================
+ARCHIVO: components\CardsView\CardsView.css
+RUTA COMPLETA: C:/Users/ivant/Desktop/ra16-homeworks-layouts/src\components\CardsView\CardsView.css
+================================================================================
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 100px;
+    padding: 40px;
+    background-color: white;
+}
+
+.shop-card {
+    background-color: #f5f5f5;
+    border-radius: 4px;
+    max-height: 240px;
+    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.3);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+
+.card-header {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.product-title {
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #333;
+    margin: 0 0 5px 0;
+}
+
+.product-color {
+    font-size: 0.85rem;
+    color: #888;
+    text-transform: capitalize;
+}
+
+.card-image-wrapper {
+    width: 100%;
+    /* height: 200px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.product-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.shop-card:hover .product-image {
+    transform: scale(1.05);
+}
+
+.card-footer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+
+.product-price {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #d11a2a;
+}
+
+.add-to-cart-btn {
+    background-color: transparent;
+    border: 2px solid #d11a2a;
+    color: #d11a2a;
+    padding: 8px 16px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #d11a2a;
+    color: #ffffff;
+}
+
+
+================================================================================
+ARCHIVO: components\CardsView\CardsView.jsx
+RUTA COMPLETA: C:/Users/ivant/Desktop/ra16-homeworks-layouts/src\components\CardsView\CardsView.jsx
+================================================================================
+import ShopCard from '../ShopCard/ShopCard';
+import './CardsView.css';
+
+const CardsView = ({ cards }) => {
+    return (
+        <div className="cards-grid">
+            {cards.map((product, index) => (
+                <ShopCard key={`${product.name}-${product.color}-${index}`} card={product} />
+            ))}
+        </div>
+    );
+};
+
+export default CardsView;
+
+
+
+================================================================================
+ARCHIVO: components\IconSwitch\IconSwitch.css
+RUTA COMPLETA: C:/Users/ivant/Desktop/ra16-homeworks-layouts/src\components\IconSwitch\IconSwitch.css
+================================================================================
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+
+================================================================================
+ARCHIVO: components\IconSwitch\IconSwitch.jsx
+RUTA COMPLETA: C:/Users/ivant/Desktop/ra16-homeworks-layouts/src\components\IconSwitch\IconSwitch.jsx
+================================================================================
+import './IconSwitch.css';
+
+function IconSwitch({ icon, onSwitch }) {
+    return (
+        <button className="icon-switch-btn" onClick={onSwitch} aria-label="Change design">
+            <span className="material-icons">{icon}</span>
+        </button>
+    );
+}
+
+export default IconSwitch;
+
+
+================================================================================
+ARCHIVO: components\ListView\ListView.css
+RUTA COMPLETA: C:/Users/ivant/Desktop/ra16-homeworks-layouts/src\components\ListView\ListView.css
+================================================================================
+.items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+    background-color: white;
+}
+
+.shop-item {
+    background-color: #f5f5f5;
+    padding: 10px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    gap: 120px;
+}
+
+.item-image-wrapper {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.item-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.shop-item:hover .item-image {
+    transform: scale(1.05);
+}
+
+.item-title {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #333;
+    flex: 2;
+    margin: 0 20px;
+}
+
+.item-color {
+    font-size: 0.9rem;
+    color: #888;
+    flex: 1;
+    text-transform: capitalize;
+}
+
+.item-price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #d11a2a;
+    margin-right: 30px;
+}
+
+.shop-item .add-to-cart-btn {
+    background-color: transparent;
+    border: 2px solid #d11a2a;
+    color: #d11a2a;
+    padding: 8px 16px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #d11a2a;
+    color: #ffffff;
+}
+
+
+
+================================================================================
+ARCHIVO: components\ListView\ListView.jsx
+RUTA COMPLETA: C:/Users/ivant/Desktop/ra16-homeworks-layouts/src\components\ListView\ListView.jsx
+================================================================================
+import ShopItem from '../ShopItem/ShopItem';
+import './ListView.css';
+
+const ListView = ({ items }) => {
+    return (
+        <div className="items-list">
+            {items.map((product, index) => (
+                <ShopItem key={`${product.name}-${product.color}-${index}`} item={product} />
+            ))}
+        </div>
+    );
+};
+
+export default ListView;
+
+
+
+================================================================================
+ARCHIVO: components\ShopCard\ShopCard.jsx
+RUTA COMPLETA: C:/Users/ivant/Desktop/ra16-homeworks-layouts/src\components\ShopCard\ShopCard.jsx
+================================================================================
+const ShopCard = ({ card }) => {
+    const { name, price, color, img } = card;
+
+    return (
+        <div className="shop-card">
+            <header className="card-header">
+                <h2 className="product-title">{name}</h2>
+                <span className="product-color">{color}</span>
+            </header>
+
+            <div className="card-image-wrapper">
+                <img src={img} alt={`${name} ${color}`} className="product-image" />
+            </div>
+
+            <footer className="card-footer">
+                <span className="product-price">${price}</span>
+                <button className="add-to-cart-btn">Add to cart</button>
+            </footer>
+        </div>
+    );
+};
+
+export default ShopCard;
+
+
+
+================================================================================
+ARCHIVO: components\ShopItem\ShopItem.jsx
+RUTA COMPLETA: C:/Users/ivant/Desktop/ra16-homeworks-layouts/src\components\ShopItem\ShopItem.jsx
+================================================================================
+const ShopItem = ({ item }) => {
+    const { name, price, color, img } = item;
+
+    return (
+        <div className="shop-item">
+            <div className="item-image-wrapper">
+                <img src={img} alt={`${name} ${color}`} className="item-image" />
+            </div>
+            <h2 className="item-title">{name}</h2>
+            <span className="item-color">{color}</span>
+            <span className="item-price">${price}</span>
+            <button className="add-to-cart-btn">Add to cart</button>
+        </div>
+    );
+};
+
+export default ShopItem;
+
+
+
+================================================================================
+ARCHIVO: components\Store\Store.css
+RUTA COMPLETA: C:/Users/ivant/Desktop/ra16-homeworks-layouts/src\components\Store\Store.css
+================================================================================
+.store-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.toolbar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.icon-switch-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #555;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+}
+
+.icon-switch-btn:hover {
+    color: #000;
+}
+
+.icon-switch-btn .material-icons {
+    font-size: 32px;
+}
+
+
+================================================================================
+ARCHIVO: components\Store\Store.jsx
+RUTA COMPLETA: C:/Users/ivant/Desktop/ra16-homeworks-layouts/src\components\Store\Store.jsx
+================================================================================
+import './Store.css';
+
+import { Component } from 'react';
+import { products } from '../../data/products'
+import IconSwitch from "../IconSwitch/IconSwitch";
+import CardsView from '../CardsView/CardsView';
+import ListView from '../ListView/ListView';
+
+class Store extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            view: 'view_module'
+        };
+
+        this.handleSwitch = this.handleSwitch.bind(this);
+    }
+
+    handleSwitch() {
+        this.setState((prevState) => ({
+            view: prevState.view === 'view_module' ? 'view_list' : 'view_module'
+        }));
+    }
+
+    render() {
+        const { view } = this.state;
+
+        return (
+            <div className="store-container">
+                <div className="toolbar">
+                    <IconSwitch
+                        icon={view === 'view_module' ? 'view_list' : 'view_module'}
+                        onSwitch={this.handleSwitch}
+                    />
+                </div>
+
+                <main className="store-layout">
+                    {view === 'view_module' ? (
+                        <CardsView cards={products} />
+                    ) : (
+                        <ListView items={products} />
+                    )}
+                </main>
+            </div>
+        );
+    }
+}
+
+export default Store;
+
+
+================================================================================
+ARCHIVO: data\products.js
+RUTA COMPLETA: C:/Users/ivant/Desktop/ra16-homeworks-layouts/src\data\products.js
+================================================================================
+const base = import.meta.env.BASE_URL;
+
+export const products = [{
+    name: "Nike Metcon 2",
+    price: "130",
+    color: "red",
+    img: `${base}assets/1.jpg`
+}, {
+    name: "Nike Metcon 2",
+    price: "130",
+    color: "green",
+    img: `${base}assets/2.jpg`
+}, {
+    name: "Nike Metcon 2",
+    price: "130",
+    color: "blue",
+    img: `${base}assets/3.jpg`
+}, {
+    name: "Nike Metcon 2",
+    price: "130",
+    color: "black",
+    img: `${base}assets/4.jpg`
+}, {
+    name: "Nike free run",
+    price: "170",
+    color: "black",
+    img: `${base}assets/7.jpg`
+}, {
+    name: "Nike Metcon 3",
+    price: "150",
+    color: "green",
+    img: `${base}assets/5.jpg`
+}];
+
+
+
